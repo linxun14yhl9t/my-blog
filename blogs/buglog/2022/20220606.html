@@ -1,63 +1,402 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Vue 数据更新了但页面没有更新的 7 种情况汇总及延伸 | Leo</title>
-    <meta name="generator" content="VuePress 1.8.2">
-    <link rel="icon" href="/my-blog/favicon.ico">
-    <meta name="description" content="积跬步以至千里">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-    
-    <link rel="preload" href="/my-blog/assets/css/0.styles.14950857.css" as="style"><link rel="preload" href="/my-blog/assets/js/app.a7213543.js" as="script"><link rel="preload" href="/my-blog/assets/js/4.53c7bd9c.js" as="script"><link rel="preload" href="/my-blog/assets/js/1.1830d674.js" as="script"><link rel="preload" href="/my-blog/assets/js/17.3ddc4fe2.js" as="script"><link rel="prefetch" href="/my-blog/assets/js/10.eba083c6.js"><link rel="prefetch" href="/my-blog/assets/js/11.16f30d27.js"><link rel="prefetch" href="/my-blog/assets/js/12.9f7e081b.js"><link rel="prefetch" href="/my-blog/assets/js/13.c2eb0356.js"><link rel="prefetch" href="/my-blog/assets/js/14.696ce024.js"><link rel="prefetch" href="/my-blog/assets/js/15.6adfa308.js"><link rel="prefetch" href="/my-blog/assets/js/16.c6c9716d.js"><link rel="prefetch" href="/my-blog/assets/js/18.4a528b91.js"><link rel="prefetch" href="/my-blog/assets/js/2.9b9d0cfd.js"><link rel="prefetch" href="/my-blog/assets/js/5.e56b08ff.js"><link rel="prefetch" href="/my-blog/assets/js/6.3900f534.js"><link rel="prefetch" href="/my-blog/assets/js/7.6a504207.js"><link rel="prefetch" href="/my-blog/assets/js/8.555c970d.js"><link rel="prefetch" href="/my-blog/assets/js/9.6d089f6c.js">
-    <link rel="stylesheet" href="/my-blog/assets/css/0.styles.14950857.css">
+    <meta name="generator" content="VuePress 1.8.2" />
+    <link rel="icon" href="/my-blog/favicon.ico" />
+    <meta name="description" content="积跬步以至千里" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,user-scalable=no"
+    />
+
+    <link
+      rel="preload"
+      href="/my-blog/assets/css/0.styles.14950857.css"
+      as="style"
+    />
+    <link rel="preload" href="/my-blog/assets/js/app.a7213543.js" as="script" />
+    <link rel="preload" href="/my-blog/assets/js/4.53c7bd9c.js" as="script" />
+    <link rel="preload" href="/my-blog/assets/js/1.1830d674.js" as="script" />
+    <link rel="preload" href="/my-blog/assets/js/17.3ddc4fe2.js" as="script" />
+    <link rel="prefetch" href="/my-blog/assets/js/10.eba083c6.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/11.16f30d27.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/12.9f7e081b.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/13.c2eb0356.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/14.696ce024.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/15.6adfa308.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/16.c6c9716d.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/18.4a528b91.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/2.9b9d0cfd.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/5.e56b08ff.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/6.3900f534.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/7.6a504207.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/8.555c970d.js" />
+    <link rel="prefetch" href="/my-blog/assets/js/9.6d089f6c.js" />
+    <link rel="stylesheet" href="/my-blog/assets/css/0.styles.14950857.css" />
   </head>
   <body>
-    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-edf8551e><div data-v-edf8551e><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-edf8551e data-v-edf8551e><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-24de1186 data-v-edf8551e data-v-edf8551e><h3 class="title" data-v-24de1186 data-v-24de1186>Leo</h3> <p class="description" data-v-24de1186 data-v-24de1186>积跬步以至千里</p> <label id="box" class="inputBox" data-v-24de1186 data-v-24de1186><input type="password" value="" data-v-24de1186> <span data-v-24de1186>Konck! Knock!</span> <button data-v-24de1186>OK</button></label> <div class="footer" data-v-24de1186 data-v-24de1186><span data-v-24de1186><i class="iconfont reco-theme" data-v-24de1186></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-24de1186>vuePress-theme-reco</a></span> <span data-v-24de1186><i class="iconfont reco-copyright" data-v-24de1186></i> <a data-v-24de1186><span data-v-24de1186>Leo</span>
-            
-          <span data-v-24de1186>2020 - </span>
-          2023
-        </a></span></div></div> <div class="hide" data-v-edf8551e><header class="navbar" data-v-edf8551e><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/my-blog/" class="home-link router-link-active"><img src="/my-blog/logo.png" alt="Leo" class="logo"> <span class="site-name">Leo</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">选择模式</h4> <ul class="color-mode-options"><li class="dark">黑暗</li><li class="light">明亮</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/my-blog/" class="nav-link"><i class="iconfont reco-home"></i>
-  主页
-</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
-      分类
-    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/my-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
-  vue
-</a></li><li class="dropdown-item"><!----> <a href="/my-blog/categories/uni-app/" class="nav-link"><i class="undefined"></i>
-  uni-app
-</a></li><li class="dropdown-item"><!----> <a href="/my-blog/categories/微信小程序/" class="nav-link"><i class="undefined"></i>
-  微信小程序
-</a></li></ul></div></div><div class="nav-item"><a href="/my-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
-  标签
-</a></div><div class="nav-item"><a href="/my-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
-  时间轴
-</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-edf8551e></div> <aside class="sidebar" data-v-edf8551e><div class="personal-info-wrapper" data-v-29bd5bbe data-v-edf8551e><img src="/my-blog/avatar.png" alt="author-avatar" class="personal-img" data-v-29bd5bbe> <h3 class="name" data-v-29bd5bbe>
-    Leo
-  </h3> <div class="num" data-v-29bd5bbe><div data-v-29bd5bbe><h3 data-v-29bd5bbe>5</h3> <h6 data-v-29bd5bbe>文章</h6></div> <div data-v-29bd5bbe><h3 data-v-29bd5bbe>2</h3> <h6 data-v-29bd5bbe>标签</h6></div></div> <ul class="social-links" data-v-29bd5bbe></ul> <hr data-v-29bd5bbe></div> <nav class="nav-links"><div class="nav-item"><a href="/my-blog/" class="nav-link"><i class="iconfont reco-home"></i>
-  主页
-</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
-      分类
-    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/my-blog/categories/vue/" class="nav-link"><i class="undefined"></i>
-  vue
-</a></li><li class="dropdown-item"><!----> <a href="/my-blog/categories/uni-app/" class="nav-link"><i class="undefined"></i>
-  uni-app
-</a></li><li class="dropdown-item"><!----> <a href="/my-blog/categories/微信小程序/" class="nav-link"><i class="undefined"></i>
-  微信小程序
-</a></li></ul></div></div><div class="nav-item"><a href="/my-blog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
-  标签
-</a></div><div class="nav-item"><a href="/my-blog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
-  时间轴
-</a></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-24de1186 data-v-edf8551e><h3 class="title" data-v-24de1186 data-v-24de1186>Vue 数据更新了但页面没有更新的 7 种情况汇总及延伸</h3> <!----> <label id="box" class="inputBox" data-v-24de1186 data-v-24de1186><input type="password" value="" data-v-24de1186> <span data-v-24de1186>Konck! Knock!</span> <button data-v-24de1186>OK</button></label> <div class="footer" data-v-24de1186 data-v-24de1186><span data-v-24de1186><i class="iconfont reco-theme" data-v-24de1186></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-24de1186>vuePress-theme-reco</a></span> <span data-v-24de1186><i class="iconfont reco-copyright" data-v-24de1186></i> <a data-v-24de1186><span data-v-24de1186>Leo</span>
-            
-          <span data-v-24de1186>2020 - </span>
-          2023
-        </a></span></div></div> <div data-v-edf8551e><main class="page"><section><div class="page-title"><h1 class="title">Vue 数据更新了但页面没有更新的 7 种情况汇总及延伸</h1> <div data-v-6179eed4><i class="iconfont reco-account" data-v-6179eed4><span data-v-6179eed4>Leo</span></i> <i class="iconfont reco-date" data-v-6179eed4><span data-v-6179eed4>2022年2月17日星期四</span></i> <!----> <i class="tags iconfont reco-tag" data-v-6179eed4><span class="tag-item" data-v-6179eed4>bugLog</span></i></div></div> <div class="theme-reco-content content__default"><p><img src="https://www.niceleo.cn/blogsImg/15.jpg" alt=""></p> <h2 id="_1-vue-无法检测实例被创建时不存在于-data-中的-property"><a href="#_1-vue-无法检测实例被创建时不存在于-data-中的-property" class="header-anchor">#</a> 1. Vue 无法检测实例被创建时不存在于 <code>data</code> 中的 property</h2> <blockquote><p>原因：由于 Vue 会在初始化实例时对 property 执行 <code>getter/setter</code> 转化，所以 property 必须在 <code>data</code> 对象上存在才能让 Vue 将它转换为响应式的。</p></blockquote> <p>场景：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <div id="app" data-server-rendered="true">
+      <div class="theme-container no-sidebar" data-v-edf8551e>
+        <div data-v-edf8551e>
+          <div
+            id="loader-wrapper"
+            class="loading-wrapper"
+            data-v-d48f4d20
+            data-v-edf8551e
+            data-v-edf8551e
+          >
+            <div class="loader-main" data-v-d48f4d20>
+              <div data-v-d48f4d20></div>
+              <div data-v-d48f4d20></div>
+              <div data-v-d48f4d20></div>
+              <div data-v-d48f4d20></div>
+            </div>
+            <!---->
+            <!---->
+          </div>
+          <div
+            class="password-shadow password-wrapper-out"
+            style="display: none"
+            data-v-24de1186
+            data-v-edf8551e
+            data-v-edf8551e
+          >
+            <h3 class="title" data-v-24de1186 data-v-24de1186>Leo</h3>
+            <p class="description" data-v-24de1186 data-v-24de1186>
+              积跬步以至千里
+            </p>
+            <label id="box" class="inputBox" data-v-24de1186 data-v-24de1186
+              ><input type="password" value="" data-v-24de1186 />
+              <span data-v-24de1186>Konck! Knock!</span>
+              <button data-v-24de1186>OK</button></label
+            >
+            <div class="footer" data-v-24de1186 data-v-24de1186>
+              <span data-v-24de1186
+                ><i class="iconfont reco-theme" data-v-24de1186></i>
+                <a
+                  target="blank"
+                  href="https://vuepress-theme-reco.recoluan.com"
+                  data-v-24de1186
+                  >vuePress-theme-reco</a
+                ></span
+              >
+              <span data-v-24de1186
+                ><i class="iconfont reco-copyright" data-v-24de1186></i>
+                <a data-v-24de1186
+                  ><span data-v-24de1186>Leo</span>
+                    
+                  <span data-v-24de1186>2020 - </span>
+                  2023
+                </a></span
+              >
+            </div>
+          </div>
+          <div class="hide" data-v-edf8551e>
+            <header class="navbar" data-v-edf8551e>
+              <div class="sidebar-button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="img"
+                  viewBox="0 0 448 512"
+                  class="icon"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"
+                  ></path>
+                </svg>
+              </div>
+              <a href="/my-blog/" class="home-link router-link-active"
+                ><img src="/my-blog/logo.png" alt="Leo" class="logo" />
+                <span class="site-name">Leo</span></a
+              >
+              <div class="links">
+                <div class="color-picker">
+                  <a class="color-button"
+                    ><i class="iconfont reco-color"></i
+                  ></a>
+                  <div class="color-picker-menu" style="display: none">
+                    <div class="mode-options">
+                      <h4 class="title">选择模式</h4>
+                      <ul class="color-mode-options">
+                        <li class="dark">黑暗</li>
+                        <li class="light">明亮</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="search-box">
+                  <i class="iconfont reco-search"></i>
+                  <input
+                    aria-label="Search"
+                    autocomplete="off"
+                    spellcheck="false"
+                    value=""
+                  />
+                  <!---->
+                </div>
+                <nav class="nav-links can-hide">
+                  <div class="nav-item">
+                    <a href="/my-blog/" class="nav-link"
+                      ><i class="iconfont reco-home"></i>
+                      主页
+                    </a>
+                  </div>
+                  <div class="nav-item">
+                    <div class="dropdown-wrapper">
+                      <a class="dropdown-title"
+                        ><span class="title"
+                          ><i class="iconfont reco-category"></i>
+                          分类
+                        </span>
+                        <span class="arrow right"></span
+                      ></a>
+                      <ul class="nav-dropdown" style="display: none">
+                        <li class="dropdown-item">
+                          <!---->
+                          <a href="/my-blog/categories/vue/" class="nav-link"
+                            ><i class="undefined"></i>
+                            vue
+                          </a>
+                        </li>
+                        <li class="dropdown-item">
+                          <!---->
+                          <a
+                            href="/my-blog/categories/uni-app/"
+                            class="nav-link"
+                            ><i class="undefined"></i>
+                            uni-app
+                          </a>
+                        </li>
+                        <li class="dropdown-item">
+                          <!---->
+                          <a
+                            href="/my-blog/categories/微信小程序/"
+                            class="nav-link"
+                            ><i class="undefined"></i>
+                            微信小程序
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="nav-item">
+                    <a href="/my-blog/tag/" class="nav-link"
+                      ><i class="iconfont reco-tag"></i>
+                      标签
+                    </a>
+                  </div>
+                  <div class="nav-item">
+                    <a href="/my-blog/timeline/" class="nav-link"
+                      ><i class="iconfont reco-date"></i>
+                      时间轴
+                    </a>
+                  </div>
+                  <!---->
+                </nav>
+              </div>
+            </header>
+            <div class="sidebar-mask" data-v-edf8551e></div>
+            <aside class="sidebar" data-v-edf8551e>
+              <div
+                class="personal-info-wrapper"
+                data-v-29bd5bbe
+                data-v-edf8551e
+              >
+                <img
+                  src="/my-blog/avatar.png"
+                  alt="author-avatar"
+                  class="personal-img"
+                  data-v-29bd5bbe
+                />
+                <h3 class="name" data-v-29bd5bbe>Leo</h3>
+                <div class="num" data-v-29bd5bbe>
+                  <div data-v-29bd5bbe>
+                    <h3 data-v-29bd5bbe>5</h3>
+                    <h6 data-v-29bd5bbe>文章</h6>
+                  </div>
+                  <div data-v-29bd5bbe>
+                    <h3 data-v-29bd5bbe>2</h3>
+                    <h6 data-v-29bd5bbe>标签</h6>
+                  </div>
+                </div>
+                <ul class="social-links" data-v-29bd5bbe></ul>
+                <hr data-v-29bd5bbe />
+              </div>
+              <nav class="nav-links">
+                <div class="nav-item">
+                  <a href="/my-blog/" class="nav-link"
+                    ><i class="iconfont reco-home"></i>
+                    主页
+                  </a>
+                </div>
+                <div class="nav-item">
+                  <div class="dropdown-wrapper">
+                    <a class="dropdown-title"
+                      ><span class="title"
+                        ><i class="iconfont reco-category"></i>
+                        分类
+                      </span>
+                      <span class="arrow right"></span
+                    ></a>
+                    <ul class="nav-dropdown" style="display: none">
+                      <li class="dropdown-item">
+                        <!---->
+                        <a href="/my-blog/categories/vue/" class="nav-link"
+                          ><i class="undefined"></i>
+                          vue
+                        </a>
+                      </li>
+                      <li class="dropdown-item">
+                        <!---->
+                        <a href="/my-blog/categories/uni-app/" class="nav-link"
+                          ><i class="undefined"></i>
+                          uni-app
+                        </a>
+                      </li>
+                      <li class="dropdown-item">
+                        <!---->
+                        <a
+                          href="/my-blog/categories/微信小程序/"
+                          class="nav-link"
+                          ><i class="undefined"></i>
+                          微信小程序
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="nav-item">
+                  <a href="/my-blog/tag/" class="nav-link"
+                    ><i class="iconfont reco-tag"></i>
+                    标签
+                  </a>
+                </div>
+                <div class="nav-item">
+                  <a href="/my-blog/timeline/" class="nav-link"
+                    ><i class="iconfont reco-date"></i>
+                    时间轴
+                  </a>
+                </div>
+                <!---->
+              </nav>
+              <!---->
+            </aside>
+            <div
+              class="password-shadow password-wrapper-in"
+              style="display: none"
+              data-v-24de1186
+              data-v-edf8551e
+            >
+              <h3 class="title" data-v-24de1186 data-v-24de1186>
+                Vue 数据更新了但页面没有更新的 7 种情况汇总及延伸
+              </h3>
+              <!---->
+              <label id="box" class="inputBox" data-v-24de1186 data-v-24de1186
+                ><input type="password" value="" data-v-24de1186 />
+                <span data-v-24de1186>Konck! Knock!</span>
+                <button data-v-24de1186>OK</button></label
+              >
+              <div class="footer" data-v-24de1186 data-v-24de1186>
+                <span data-v-24de1186
+                  ><i class="iconfont reco-theme" data-v-24de1186></i>
+                  <a
+                    target="blank"
+                    href="https://vuepress-theme-reco.recoluan.com"
+                    data-v-24de1186
+                    >vuePress-theme-reco</a
+                  ></span
+                >
+                <span data-v-24de1186
+                  ><i class="iconfont reco-copyright" data-v-24de1186></i>
+                  <a data-v-24de1186
+                    ><span data-v-24de1186>Leo</span>
+                      
+                    <span data-v-24de1186>2020 - </span>
+                    2023
+                  </a></span
+                >
+              </div>
+            </div>
+            <div data-v-edf8551e>
+              <main class="page">
+                <section>
+                  <div class="page-title">
+                    <h1 class="title">
+                      Vue 数据更新了但页面没有更新的 7 种情况汇总及延伸
+                    </h1>
+                    <div data-v-6179eed4>
+                      <i class="iconfont reco-account" data-v-6179eed4
+                        ><span data-v-6179eed4>Leo</span></i
+                      >
+                      <i class="iconfont reco-date" data-v-6179eed4
+                        ><span data-v-6179eed4>2022年2月17日星期四</span></i
+                      >
+                      <!---->
+                      <i class="tags iconfont reco-tag" data-v-6179eed4
+                        ><span class="tag-item" data-v-6179eed4>bugLog</span></i
+                      >
+                    </div>
+                  </div>
+                  <div class="theme-reco-content content__default">
+                    <p>
+                      <img
+                        src="https://linxun14yhl9t.github.io/my-blog/blogsImg/15.jpg"
+                        alt=""
+                      />
+                    </p>
+                    <h2
+                      id="_1-vue-无法检测实例被创建时不存在于-data-中的-property"
+                    >
+                      <a
+                        href="#_1-vue-无法检测实例被创建时不存在于-data-中的-property"
+                        class="header-anchor"
+                        >#</a
+                      >
+                      1. Vue 无法检测实例被创建时不存在于 <code>data</code> 中的
+                      property
+                    </h2>
+                    <blockquote>
+                      <p>
+                        原因：由于 Vue 会在初始化实例时对 property 执行
+                        <code>getter/setter</code> 转化，所以 property 必须在
+                        <code>data</code> 对象上存在才能让 Vue
+                        将它转换为响应式的。
+                      </p>
+                    </blockquote>
+                    <p>场景：</p>
+                    <div class="language-js line-numbers-mode">
+                      <pre
+                        class="language-js"
+                      ><code><span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   <span class="token literal-property property">data</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token comment">// 页面不会变化</span>
   <span class="token literal-property property">template</span><span class="token operator">:</span> <span class="token string">'&lt;div&gt;{{message}}&lt;/div&gt;'</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 vm<span class="token punctuation">.</span>message <span class="token operator">=</span> <span class="token string">'Hello!'</span> <span class="token comment">// `vm.message` 不是响应式的</span>
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>解决办法：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br />
+                      </div>
+                    </div>
+                    <p>解决办法：</p>
+                    <div class="language-js line-numbers-mode">
+                      <pre
+                        class="language-js"
+                      ><code><span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token comment">// 声明 a、b 为一个空值字符串</span>
     <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
@@ -65,7 +404,44 @@ vm<span class="token punctuation">.</span>message <span class="token operator">=
   <span class="token literal-property property">template</span><span class="token operator">:</span> <span class="token string">'&lt;div&gt;{{ message }}&lt;/div&gt;'</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 vm<span class="token punctuation">.</span>message <span class="token operator">=</span> <span class="token string">'Hello!'</span>
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h2 id="_2-vue-无法检测对象-property-的添加或移除"><a href="#_2-vue-无法检测对象-property-的添加或移除" class="header-anchor">#</a> 2. Vue 无法检测对象 property 的添加或移除</h2> <blockquote><p>原因：官方 - 由于 JavaScript（ES5） 的限制，Vue.js <strong>不能检测到对象属性的添加或删除</strong>。因为 Vue.js 在初始化实例时将属性转为 getter/setter，所以属性必须在 <code>data</code> 对象上才能让 Vue.js 转换它，才能让它是响应的。</p></blockquote> <p>场景：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var vm = new Vue({
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br /><span class="line-number">7</span><br /><span
+                          class="line-number"
+                          >8</span
+                        ><br />
+                      </div>
+                    </div>
+                    <h2 id="_2-vue-无法检测对象-property-的添加或移除">
+                      <a
+                        href="#_2-vue-无法检测对象-property-的添加或移除"
+                        class="header-anchor"
+                        >#</a
+                      >
+                      2. Vue 无法检测对象 property 的添加或移除
+                    </h2>
+                    <blockquote>
+                      <p>
+                        原因：官方 - 由于 JavaScript（ES5） 的限制，Vue.js
+                        <strong>不能检测到对象属性的添加或删除</strong>。因为
+                        Vue.js 在初始化实例时将属性转为
+                        getter/setter，所以属性必须在
+                        <code>data</code> 对象上才能让 Vue.js
+                        转换它，才能让它是响应的。
+                      </p>
+                    </blockquote>
+                    <p>场景：</p>
+                    <div class="language- line-numbers-mode">
+                      <pre class="language-text"><code>var vm = new Vue({
   data:{
     obj: {
       id: 001
@@ -77,7 +453,32 @@ vm<span class="token punctuation">.</span>message <span class="token operator">=
 
 vm.obj.message = 'hello' // 不是响应式的
 delete vm.obj.id       // 不是非响应式的
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>解决办法：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 动态添加 - Vue.set
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br /><span class="line-number">7</span><br /><span
+                          class="line-number"
+                          >8</span
+                        ><br /><span class="line-number">9</span><br /><span
+                          class="line-number"
+                          >10</span
+                        ><br /><span class="line-number">11</span><br /><span
+                          class="line-number"
+                          >12</span
+                        ><br />
+                      </div>
+                    </div>
+                    <p>解决办法：</p>
+                    <div class="language- line-numbers-mode">
+                      <pre class="language-text"><code>// 动态添加 - Vue.set
 Vue.set(vm.obj, propertyName, newValue)
 
 // 动态添加 - vm.$set
@@ -92,13 +493,72 @@ Vue.delete(vm.obj, propertyName)
 
 // 动态移除 - vm.$delete
 vm.$delete(vm.obj, propertyName)
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h2 id="_3-vue-不能检测利用数组索引直接修改一个数组项"><a href="#_3-vue-不能检测利用数组索引直接修改一个数组项" class="header-anchor">#</a> 3. Vue 不能检测利用数组索引直接修改一个数组项</h2> <blockquote><p>原因：官方 - 由于 JavaScript 的限制，Vue <strong>不能检测</strong>数组和对象的变化；尤雨溪 - 性能代价和获得用户体验不成正比。</p></blockquote> <p>场景：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var vm = new Vue({
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br /><span class="line-number">7</span><br /><span
+                          class="line-number"
+                          >8</span
+                        ><br /><span class="line-number">9</span><br /><span
+                          class="line-number"
+                          >10</span
+                        ><br /><span class="line-number">11</span><br /><span
+                          class="line-number"
+                          >12</span
+                        ><br /><span class="line-number">13</span><br /><span
+                          class="line-number"
+                          >14</span
+                        ><br /><span class="line-number">15</span><br />
+                      </div>
+                    </div>
+                    <h2 id="_3-vue-不能检测利用数组索引直接修改一个数组项">
+                      <a
+                        href="#_3-vue-不能检测利用数组索引直接修改一个数组项"
+                        class="header-anchor"
+                        >#</a
+                      >
+                      3. Vue 不能检测利用数组索引直接修改一个数组项
+                    </h2>
+                    <blockquote>
+                      <p>
+                        原因：官方 - 由于 JavaScript 的限制，Vue
+                        <strong>不能检测</strong>数组和对象的变化；尤雨溪 -
+                        性能代价和获得用户体验不成正比。
+                      </p>
+                    </blockquote>
+                    <p>场景：</p>
+                    <div class="language- line-numbers-mode">
+                      <pre class="language-text"><code>var vm = new Vue({
   data: {
     items: ['a', 'b', 'c']
   }
 })
 vm.items[1] = 'x' // 不是响应性的
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>解决办法：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// Vue.set
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br />
+                      </div>
+                    </div>
+                    <p>解决办法：</p>
+                    <div class="language- line-numbers-mode">
+                      <pre class="language-text"><code>// Vue.set
 Vue.set(vm.items, indexOfItem, newValue)
 
 // vm.$set
@@ -106,7 +566,39 @@ vm.$set(vm.items, indexOfItem, newValue)
 
 // Array.prototype.splice
 vm.items.splice(indexOfItem, 1, newValue)
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h2 id="拓展-object-defineproperty-可以监测数组的变化"><a href="#拓展-object-defineproperty-可以监测数组的变化" class="header-anchor">#</a> 拓展：Object.defineProperty() 可以监测数组的变化</h2> <blockquote><p>但对数组新增一个属性（index）不会监测到数据变化，因为无法监测到新增数组的下标（index），删除一个属性（index）也是。</p></blockquote> <p>场景：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var arr = [1, 2, 3, 4]
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br /><span class="line-number">7</span><br /><span
+                          class="line-number"
+                          >8</span
+                        ><br />
+                      </div>
+                    </div>
+                    <h2 id="拓展-object-defineproperty-可以监测数组的变化">
+                      <a
+                        href="#拓展-object-defineproperty-可以监测数组的变化"
+                        class="header-anchor"
+                        >#</a
+                      >
+                      拓展：Object.defineProperty() 可以监测数组的变化
+                    </h2>
+                    <blockquote>
+                      <p>
+                        但对数组新增一个属性（index）不会监测到数据变化，因为无法监测到新增数组的下标（index），删除一个属性（index）也是。
+                      </p>
+                    </blockquote>
+                    <p>场景：</p>
+                    <div class="language- line-numbers-mode">
+                      <pre class="language-text"><code>var arr = [1, 2, 3, 4]
 arr.forEach(function(item, index) {
  Object.defineProperty(arr, index, {
     set: function(value) {
@@ -122,14 +614,113 @@ arr.forEach(function(item, index) {
 arr[1] = '123'  // 触发 setter
 arr[1]          // 触发 getter 返回值为 &quot;123&quot;
 arr[5] = 5      // 不会触发 setter 和 getter
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><h2 id="_4-vue-不能监测直接修改数组长度的变化"><a href="#_4-vue-不能监测直接修改数组长度的变化" class="header-anchor">#</a> 4. Vue 不能监测直接修改数组长度的变化</h2> <blockquote><p>原因：官方 - 由于 JavaScript 的限制，Vue <strong>不能检测</strong>数组和对象的变化；尤雨溪 - 性能代价和获得用户体验不成正比。(Object.defineProperty() 可以监测数据的变化)</p></blockquote> <p>场景：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var vm = new Vue({
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br /><span class="line-number">7</span><br /><span
+                          class="line-number"
+                          >8</span
+                        ><br /><span class="line-number">9</span><br /><span
+                          class="line-number"
+                          >10</span
+                        ><br /><span class="line-number">11</span><br /><span
+                          class="line-number"
+                          >12</span
+                        ><br /><span class="line-number">13</span><br /><span
+                          class="line-number"
+                          >14</span
+                        ><br /><span class="line-number">15</span><br /><span
+                          class="line-number"
+                          >16</span
+                        ><br />
+                      </div>
+                    </div>
+                    <h2 id="_4-vue-不能监测直接修改数组长度的变化">
+                      <a
+                        href="#_4-vue-不能监测直接修改数组长度的变化"
+                        class="header-anchor"
+                        >#</a
+                      >
+                      4. Vue 不能监测直接修改数组长度的变化
+                    </h2>
+                    <blockquote>
+                      <p>
+                        原因：官方 - 由于 JavaScript 的限制，Vue
+                        <strong>不能检测</strong>数组和对象的变化；尤雨溪 -
+                        性能代价和获得用户体验不成正比。(Object.defineProperty()
+                        可以监测数据的变化)
+                      </p>
+                    </blockquote>
+                    <p>场景：</p>
+                    <div class="language- line-numbers-mode">
+                      <pre class="language-text"><code>var vm = new Vue({
   data: {
     items: ['a', 'b', 'c']
   }
 })
 vm.items.length = 2 // 不是响应性的
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>解决办法：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>vm.items.splice(newLength)
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="_5-在异步更新执行之前操作-dom-数据不会变化"><a href="#_5-在异步更新执行之前操作-dom-数据不会变化" class="header-anchor">#</a> 5. 在异步更新执行之前操作 DOM 数据不会变化</h2> <blockquote><p>原因：Vue 在更新 DOM 时是<strong>异步</strong>执行的。只要侦听到数据变化，Vue 将开启一个队列，并缓冲在同一事件循环中发生的所有数据变更。如果同一个 watcher 被多次触发，只会被推入到队列中一次。这种在缓冲时去除重复数据对于避免不必要的计算和 DOM 操作是非常重要的。然后，在下一个的事件循环“tick”中，Vue 刷新队列并执行实际 (已去重的) 工作。Vue 在内部对异步队列尝试使用原生的 <code>Promise.then</code>、<code>MutationObserver</code> 和 <code>setImmediate</code>，如果执行环境不支持，则会采用 <code>setTimeout(fn, 0)</code> 代替。</p></blockquote> <p>场景：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;div id=&quot;example&quot;&gt;{{message}}&lt;/div&gt;
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br />
+                      </div>
+                    </div>
+                    <p>解决办法：</p>
+                    <div class="language- line-numbers-mode">
+                      <pre
+                        class="language-text"
+                      ><code>vm.items.splice(newLength)
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br />
+                      </div>
+                    </div>
+                    <h2 id="_5-在异步更新执行之前操作-dom-数据不会变化">
+                      <a
+                        href="#_5-在异步更新执行之前操作-dom-数据不会变化"
+                        class="header-anchor"
+                        >#</a
+                      >
+                      5. 在异步更新执行之前操作 DOM 数据不会变化
+                    </h2>
+                    <blockquote>
+                      <p>
+                        原因：Vue 在更新 DOM
+                        时是<strong>异步</strong>执行的。只要侦听到数据变化，Vue
+                        将开启一个队列，并缓冲在同一事件循环中发生的所有数据变更。如果同一个
+                        watcher
+                        被多次触发，只会被推入到队列中一次。这种在缓冲时去除重复数据对于避免不必要的计算和
+                        DOM
+                        操作是非常重要的。然后，在下一个的事件循环“tick”中，Vue
+                        刷新队列并执行实际 (已去重的) 工作。Vue
+                        在内部对异步队列尝试使用原生的
+                        <code>Promise.then</code>、<code>MutationObserver</code>
+                        和
+                        <code>setImmediate</code>，如果执行环境不支持，则会采用
+                        <code>setTimeout(fn, 0)</code> 代替。
+                      </p>
+                    </blockquote>
+                    <p>场景：</p>
+                    <div class="language- line-numbers-mode">
+                      <pre
+                        class="language-text"
+                      ><code>&lt;div id=&quot;example&quot;&gt;{{message}}&lt;/div&gt;
 var vm = new Vue({
   el: '#example',
   data: {
@@ -139,7 +730,29 @@ var vm = new Vue({
 vm.message = 'new message' // 更改数据
 vm.$el.textContent === 'new message' // false
 vm.$el.style.color = 'red' // 页面没有变化
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>解决办法：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var vm = new Vue({
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br /><span class="line-number">7</span><br /><span
+                          class="line-number"
+                          >8</span
+                        ><br /><span class="line-number">9</span><br /><span
+                          class="line-number"
+                          >10</span
+                        ><br />
+                      </div>
+                    </div>
+                    <p>解决办法：</p>
+                    <div class="language- line-numbers-mode">
+                      <pre class="language-text"><code>var vm = new Vue({
   el: '#example',
   data: {
     message: '123'
@@ -151,7 +764,41 @@ Vue.nextTick(function () {
   vm.$el.textContent === 'new message' // true
   vm.$el.style.color = 'red' // 文字颜色变成红色
 })
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h2 id="拓展-异步更新带来的数据响应的误解"><a href="#拓展-异步更新带来的数据响应的误解" class="header-anchor">#</a> 拓展：异步更新带来的数据响应的误解</h2> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;!-- 页面显示：我更新啦！ --&gt;
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br /><span class="line-number">7</span><br /><span
+                          class="line-number"
+                          >8</span
+                        ><br /><span class="line-number">9</span><br /><span
+                          class="line-number"
+                          >10</span
+                        ><br /><span class="line-number">11</span><br /><span
+                          class="line-number"
+                          >12</span
+                        ><br />
+                      </div>
+                    </div>
+                    <h2 id="拓展-异步更新带来的数据响应的误解">
+                      <a
+                        href="#拓展-异步更新带来的数据响应的误解"
+                        class="header-anchor"
+                        >#</a
+                      >
+                      拓展：异步更新带来的数据响应的误解
+                    </h2>
+                    <div class="language- line-numbers-mode">
+                      <pre
+                        class="language-text"
+                      ><code>&lt;!-- 页面显示：我更新啦！ --&gt;
 &lt;div id=&quot;example&quot;&gt;{{message.text}}&lt;/div&gt;
 var vm = new Vue({
   el: '#example',
@@ -163,10 +810,163 @@ vm.$nextTick(function () {
   this.message = {}
   this.message.text = '我更新啦！'
 })
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>上段代码中，我们在 <code>data</code> 对象中声明了一个 <code>message</code> 空对象，然后在下次 DOM 更新循环结束之后触发的异步回调中，执行了如下两段代码：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>this.message = {};
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br /><span class="line-number">7</span><br /><span
+                          class="line-number"
+                          >8</span
+                        ><br /><span class="line-number">9</span><br /><span
+                          class="line-number"
+                          >10</span
+                        ><br /><span class="line-number">11</span><br /><span
+                          class="line-number"
+                          >12</span
+                        ><br />
+                      </div>
+                    </div>
+                    <p>
+                      上段代码中，我们在 <code>data</code> 对象中声明了一个
+                      <code>message</code> 空对象，然后在下次 DOM
+                      更新循环结束之后触发的异步回调中，执行了如下两段代码：
+                    </p>
+                    <div class="language- line-numbers-mode">
+                      <pre class="language-text"><code>this.message = {};
 this.message.text = '我更新啦！'
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>到这里，模版更新了，页面最后会显示 <code>我更新啦！</code>。</p> <p><strong>模板更新了，应该具有响应式特性，如果这么想那么你就已经走入了误区。</strong></p> <p>一开始我们在 <code>data</code> 对象中只是声明了一个 <code>message</code> 空对象，并不具有 <code>text</code> 属性，所以该 <code>text</code> 属性是不具有响应式特性的。</p> <p><strong>但模板切切实实已经更新了，这又是怎么回事呢？</strong></p> <p>那是因为 Vue.js 的 DOM 更新是异步的，即当 <code>setter</code> 操作发生后，指令并不会立马更新，指令的更新操作会有一个延迟，当指令更新真正执行的时候，此时 <code>text</code> 属性已经赋值，所以指令更新模板时得到的是新值。</p> <blockquote><p>模板中每个指令/数据绑定都有一个对应的 <strong>watcher</strong> 对象，在计算过程中它把属性记录为依赖。之后当依赖的 setter 被调用时，会触发 watcher 重新计算 ，也就会导致它的关联指令更新 DOM。</p></blockquote> <p>具体流程如下所示：</p> <ul><li>执行 <code>this.dataObj = {};</code> 时， <code>setter</code> 被调用。</li> <li>Vue.js 追踪到 <code>message</code> 依赖的 <code>setter</code> 被调用后，会触发 <code>watcher</code> 重新计算。</li> <li><code>this.message.text = 'new text';</code> 对 <code>text</code> 属性进行赋值。</li> <li>异步回调逻辑执行结束之后，就会导致它的关联指令更新 DOM，指令更新开始执行。</li></ul> <p>所以真正的触发模版更新的操作是 <code>this.message = {};</code>这一句引起的，因为触发了 <code>setter</code>，所以单看上述例子，具有响应式特性的数据只有 <code>message</code> 这一层，它的动态添加的属性是不具备的。</p> <blockquote><p>对应上述第二点 - Vue 无法检测对象 property 的添加或移除</p></blockquote> <h2 id="_6-循环嵌套层级太深-视图不更新"><a href="#_6-循环嵌套层级太深-视图不更新" class="header-anchor">#</a> 6. 循环嵌套层级太深，视图不更新？</h2> <p>看到网上有些人说数据更新的层级太深，导致数据不更新或者更新缓慢从而导致试图不更新？</p> <p>由于我没有遇到过这种情况，在我试图重现这种场景的情况下，发现并没有上述情况的发生，所以对于这一点不进行过多描述（如果有人在真实场景下遇到这种情况留个言吧）。</p> <p>针对上述情况有人给出的解决方案是使用强制更新：</p> <blockquote><p>如果你发现你自己需要在 Vue 中做一次强制更新，99.9% 的情况，是你在某个地方做错了事。</p></blockquote> <div class="language- line-numbers-mode"><pre class="language-text"><code>vm.$forceUpdate()
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="_7-拓展-路由参数变化时-页面不更新-数据不更新"><a href="#_7-拓展-路由参数变化时-页面不更新-数据不更新" class="header-anchor">#</a> 7. 拓展：路由参数变化时，页面不更新（数据不更新）</h2> <p>拓展一个因为路由参数变化，而导致页面不更新的问题，页面不更新本质上就是数据没有更新。</p> <blockquote><p>原因：路由视图组件<strong>引用了相同组件</strong>时，当路由参会变化时，会导致该组件无法更新，也就是我们常说中的页面无法更新的问题。</p></blockquote> <p>场景：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;div id=&quot;app&quot;&gt;
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br />
+                      </div>
+                    </div>
+                    <p>
+                      到这里，模版更新了，页面最后会显示
+                      <code>我更新啦！</code>。
+                    </p>
+                    <p>
+                      <strong
+                        >模板更新了，应该具有响应式特性，如果这么想那么你就已经走入了误区。</strong
+                      >
+                    </p>
+                    <p>
+                      一开始我们在 <code>data</code> 对象中只是声明了一个
+                      <code>message</code> 空对象，并不具有
+                      <code>text</code> 属性，所以该
+                      <code>text</code> 属性是不具有响应式特性的。
+                    </p>
+                    <p>
+                      <strong
+                        >但模板切切实实已经更新了，这又是怎么回事呢？</strong
+                      >
+                    </p>
+                    <p>
+                      那是因为 Vue.js 的 DOM 更新是异步的，即当
+                      <code>setter</code>
+                      操作发生后，指令并不会立马更新，指令的更新操作会有一个延迟，当指令更新真正执行的时候，此时
+                      <code>text</code>
+                      属性已经赋值，所以指令更新模板时得到的是新值。
+                    </p>
+                    <blockquote>
+                      <p>
+                        模板中每个指令/数据绑定都有一个对应的
+                        <strong>watcher</strong>
+                        对象，在计算过程中它把属性记录为依赖。之后当依赖的
+                        setter 被调用时，会触发 watcher 重新计算
+                        ，也就会导致它的关联指令更新 DOM。
+                      </p>
+                    </blockquote>
+                    <p>具体流程如下所示：</p>
+                    <ul>
+                      <li>
+                        执行 <code>this.dataObj = {};</code> 时，
+                        <code>setter</code> 被调用。
+                      </li>
+                      <li>
+                        Vue.js 追踪到 <code>message</code> 依赖的
+                        <code>setter</code> 被调用后，会触发
+                        <code>watcher</code> 重新计算。
+                      </li>
+                      <li>
+                        <code>this.message.text = 'new text';</code> 对
+                        <code>text</code> 属性进行赋值。
+                      </li>
+                      <li>
+                        异步回调逻辑执行结束之后，就会导致它的关联指令更新
+                        DOM，指令更新开始执行。
+                      </li>
+                    </ul>
+                    <p>
+                      所以真正的触发模版更新的操作是
+                      <code>this.message = {};</code>这一句引起的，因为触发了
+                      <code>setter</code
+                      >，所以单看上述例子，具有响应式特性的数据只有
+                      <code>message</code>
+                      这一层，它的动态添加的属性是不具备的。
+                    </p>
+                    <blockquote>
+                      <p>
+                        对应上述第二点 - Vue 无法检测对象 property 的添加或移除
+                      </p>
+                    </blockquote>
+                    <h2 id="_6-循环嵌套层级太深-视图不更新">
+                      <a
+                        href="#_6-循环嵌套层级太深-视图不更新"
+                        class="header-anchor"
+                        >#</a
+                      >
+                      6. 循环嵌套层级太深，视图不更新？
+                    </h2>
+                    <p>
+                      看到网上有些人说数据更新的层级太深，导致数据不更新或者更新缓慢从而导致试图不更新？
+                    </p>
+                    <p>
+                      由于我没有遇到过这种情况，在我试图重现这种场景的情况下，发现并没有上述情况的发生，所以对于这一点不进行过多描述（如果有人在真实场景下遇到这种情况留个言吧）。
+                    </p>
+                    <p>针对上述情况有人给出的解决方案是使用强制更新：</p>
+                    <blockquote>
+                      <p>
+                        如果你发现你自己需要在 Vue 中做一次强制更新，99.9%
+                        的情况，是你在某个地方做错了事。
+                      </p>
+                    </blockquote>
+                    <div class="language- line-numbers-mode">
+                      <pre class="language-text"><code>vm.$forceUpdate()
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br />
+                      </div>
+                    </div>
+                    <h2 id="_7-拓展-路由参数变化时-页面不更新-数据不更新">
+                      <a
+                        href="#_7-拓展-路由参数变化时-页面不更新-数据不更新"
+                        class="header-anchor"
+                        >#</a
+                      >
+                      7. 拓展：路由参数变化时，页面不更新（数据不更新）
+                    </h2>
+                    <p>
+                      拓展一个因为路由参数变化，而导致页面不更新的问题，页面不更新本质上就是数据没有更新。
+                    </p>
+                    <blockquote>
+                      <p>
+                        原因：路由视图组件<strong>引用了相同组件</strong>时，当路由参会变化时，会导致该组件无法更新，也就是我们常说中的页面无法更新的问题。
+                      </p>
+                    </blockquote>
+                    <p>场景：</p>
+                    <div class="language- line-numbers-mode">
+                      <pre
+                        class="language-text"
+                      ><code>&lt;div id=&quot;app&quot;&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;router-link to=&quot;/home/foo&quot;&gt;To Foo&lt;/router-link&gt;&lt;/li&gt; 
     &lt;li&gt;&lt;router-link to=&quot;/home/baz&quot;&gt;To Baz&lt;/router-link&gt;&lt;/li&gt; 
@@ -195,7 +995,78 @@ new Vue({
   el: '#app',
   router
 })
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><p>上段代码中，我们在路由构建选项 <code>routes</code> 中配置了一个动态路由 <code>'/home/:name'</code>，它们共用一个路由组件 <code>Home</code>，这代表他们复用 <code>RouterView</code> 。</p> <p>当进行路由切换时，页面只会渲染第一次路由匹配到的参数，之后再进行路由切换时，<code>message</code> 是没有变化的。</p> <p>解决办法：</p> <blockquote><p>解决的办法有很多种，这里只列举我常用到一种方法。</p></blockquote> <ol><li>通过 <code>watch</code> 监听 <code>$route</code> 的变化。</li></ol> <div class="language- line-numbers-mode"><pre class="language-text"><code>const Home = {
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br /><span class="line-number">7</span><br /><span
+                          class="line-number"
+                          >8</span
+                        ><br /><span class="line-number">9</span><br /><span
+                          class="line-number"
+                          >10</span
+                        ><br /><span class="line-number">11</span><br /><span
+                          class="line-number"
+                          >12</span
+                        ><br /><span class="line-number">13</span><br /><span
+                          class="line-number"
+                          >14</span
+                        ><br /><span class="line-number">15</span><br /><span
+                          class="line-number"
+                          >16</span
+                        ><br /><span class="line-number">17</span><br /><span
+                          class="line-number"
+                          >18</span
+                        ><br /><span class="line-number">19</span><br /><span
+                          class="line-number"
+                          >20</span
+                        ><br /><span class="line-number">21</span><br /><span
+                          class="line-number"
+                          >22</span
+                        ><br /><span class="line-number">23</span><br /><span
+                          class="line-number"
+                          >24</span
+                        ><br /><span class="line-number">25</span><br /><span
+                          class="line-number"
+                          >26</span
+                        ><br /><span class="line-number">27</span><br /><span
+                          class="line-number"
+                          >28</span
+                        ><br /><span class="line-number">29</span><br />
+                      </div>
+                    </div>
+                    <p>
+                      上段代码中，我们在路由构建选项
+                      <code>routes</code> 中配置了一个动态路由
+                      <code>'/home/:name'</code>，它们共用一个路由组件
+                      <code>Home</code>，这代表他们复用
+                      <code>RouterView</code> 。
+                    </p>
+                    <p>
+                      当进行路由切换时，页面只会渲染第一次路由匹配到的参数，之后再进行路由切换时，<code
+                        >message</code
+                      >
+                      是没有变化的。
+                    </p>
+                    <p>解决办法：</p>
+                    <blockquote>
+                      <p>解决的办法有很多种，这里只列举我常用到一种方法。</p>
+                    </blockquote>
+                    <ol>
+                      <li>
+                        通过 <code>watch</code> 监听
+                        <code>$route</code> 的变化。
+                      </li>
+                    </ol>
+                    <div class="language- line-numbers-mode">
+                      <pre class="language-text"><code>const Home = {
   template: `&lt;div&gt;{{message}}&lt;/div&gt;`,
   data() {
     return {
@@ -213,15 +1084,269 @@ new Vue({
   el: '#app',
   router
 })
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><ol><li>给 <code>&lt;router-view&gt;&lt;/router-view&gt;</code> 绑定 <code>key</code> 属性，这样 Vue 就会认为这是不同的 <code>&lt;router-view&gt;</code>。</li></ol> <blockquote><p>弊端：如果从 <code>/home</code> 跳转到 <code>/user</code> 等其他路由下，我们是不用担心组件更新问题的，所以这个时候 <code>key</code> 属性是多余的。</p></blockquote> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;div id=&quot;app&quot;&gt;
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br /><span class="line-number">5</span><br /><span
+                          class="line-number"
+                          >6</span
+                        ><br /><span class="line-number">7</span><br /><span
+                          class="line-number"
+                          >8</span
+                        ><br /><span class="line-number">9</span><br /><span
+                          class="line-number"
+                          >10</span
+                        ><br /><span class="line-number">11</span><br /><span
+                          class="line-number"
+                          >12</span
+                        ><br /><span class="line-number">13</span><br /><span
+                          class="line-number"
+                          >14</span
+                        ><br /><span class="line-number">15</span><br /><span
+                          class="line-number"
+                          >16</span
+                        ><br /><span class="line-number">17</span><br /><span
+                          class="line-number"
+                          >18</span
+                        ><br />
+                      </div>
+                    </div>
+                    <ol>
+                      <li>
+                        给
+                        <code>&lt;router-view&gt;&lt;/router-view&gt;</code>
+                        绑定 <code>key</code> 属性，这样 Vue 就会认为这是不同的
+                        <code>&lt;router-view&gt;</code>。
+                      </li>
+                    </ol>
+                    <blockquote>
+                      <p>
+                        弊端：如果从 <code>/home</code> 跳转到
+                        <code>/user</code>
+                        等其他路由下，我们是不用担心组件更新问题的，所以这个时候
+                        <code>key</code> 属性是多余的。
+                      </p>
+                    </blockquote>
+                    <div class="language- line-numbers-mode">
+                      <pre
+                        class="language-text"
+                      ><code>&lt;div id=&quot;app&quot;&gt;
   ...
   &lt;router-view :key=&quot;key&quot;&gt;&lt;/router-view&gt;
 &lt;/div&gt;
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">6/30/2022, 2:51:08 PM</span></div></footer> <!----> <div class="comments-wrapper"><!----></div> <ul class="side-bar sub-sidebar-wrapper" style="width:12rem;" data-v-1ab38110><li class="level-2" data-v-1ab38110><a href="/my-blog/blogs/buglog/2022/20220606.html#_1-vue-无法检测实例被创建时不存在于-data-中的-property" class="sidebar-link reco-side-_1-vue-无法检测实例被创建时不存在于-data-中的-property" data-v-1ab38110>1. Vue 无法检测实例被创建时不存在于 data 中的 property</a></li><li class="level-2" data-v-1ab38110><a href="/my-blog/blogs/buglog/2022/20220606.html#_2-vue-无法检测对象-property-的添加或移除" class="sidebar-link reco-side-_2-vue-无法检测对象-property-的添加或移除" data-v-1ab38110>2. Vue 无法检测对象 property 的添加或移除</a></li><li class="level-2" data-v-1ab38110><a href="/my-blog/blogs/buglog/2022/20220606.html#_3-vue-不能检测利用数组索引直接修改一个数组项" class="sidebar-link reco-side-_3-vue-不能检测利用数组索引直接修改一个数组项" data-v-1ab38110>3. Vue 不能检测利用数组索引直接修改一个数组项</a></li><li class="level-2" data-v-1ab38110><a href="/my-blog/blogs/buglog/2022/20220606.html#拓展-object-defineproperty-可以监测数组的变化" class="sidebar-link reco-side-拓展-object-defineproperty-可以监测数组的变化" data-v-1ab38110>拓展：Object.defineProperty() 可以监测数组的变化</a></li><li class="level-2" data-v-1ab38110><a href="/my-blog/blogs/buglog/2022/20220606.html#_4-vue-不能监测直接修改数组长度的变化" class="sidebar-link reco-side-_4-vue-不能监测直接修改数组长度的变化" data-v-1ab38110>4. Vue 不能监测直接修改数组长度的变化</a></li><li class="level-2" data-v-1ab38110><a href="/my-blog/blogs/buglog/2022/20220606.html#_5-在异步更新执行之前操作-dom-数据不会变化" class="sidebar-link reco-side-_5-在异步更新执行之前操作-dom-数据不会变化" data-v-1ab38110>5. 在异步更新执行之前操作 DOM 数据不会变化</a></li><li class="level-2" data-v-1ab38110><a href="/my-blog/blogs/buglog/2022/20220606.html#拓展-异步更新带来的数据响应的误解" class="sidebar-link reco-side-拓展-异步更新带来的数据响应的误解" data-v-1ab38110>拓展：异步更新带来的数据响应的误解</a></li><li class="level-2" data-v-1ab38110><a href="/my-blog/blogs/buglog/2022/20220606.html#_6-循环嵌套层级太深-视图不更新" class="sidebar-link reco-side-_6-循环嵌套层级太深-视图不更新" data-v-1ab38110>6. 循环嵌套层级太深，视图不更新？</a></li><li class="level-2" data-v-1ab38110><a href="/my-blog/blogs/buglog/2022/20220606.html#_7-拓展-路由参数变化时-页面不更新-数据不更新" class="sidebar-link reco-side-_7-拓展-路由参数变化时-页面不更新-数据不更新" data-v-1ab38110>7. 拓展：路由参数变化时，页面不更新（数据不更新）</a></li></ul></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><div class="kanbanniang" data-v-ee8d62e6><div class="banniang-container" style="display:;" data-v-ee8d62e6><div class="messageBox" style="right:68px;bottom:290px;display:none;" data-v-ee8d62e6>
-      欢迎来到我的博客
-    </div> <div class="operation" style="right:90px;bottom:40px;display:;" data-v-ee8d62e6><i class="kbnfont kbn-ban-home ban-home" data-v-ee8d62e6></i> <i class="kbnfont kbn-ban-message message" data-v-ee8d62e6></i> <i class="kbnfont kbn-ban-close close" data-v-ee8d62e6></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-ee8d62e6><i class="kbnfont kbn-ban-info info" data-v-ee8d62e6></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-ee8d62e6></i></div> <canvas id="banniang" width="250" height="320" class="live2d" style="right:90px;bottom:-20px;opacity:0.9;" data-v-ee8d62e6></canvas></div> <div class="showBanNiang" style="display:none;" data-v-ee8d62e6>
-    看板娘
-  </div></div><APlayer audio="" fixed="true" mini="true" autoplay="autoplay" theme="#f9bcdd" loop="loop" order="random" preload="auto" volume="0.1" mutex="true" lrc-type="0" list-folded="true" list-max-height="250" storage-name="vuepress-plugin-meting" id="aplayer-fixed"></APlayer><canvas id="vuepress-canvas-cursor"></canvas><div></div></div></div>
-    <script src="/my-blog/assets/js/app.a7213543.js" defer></script><script src="/my-blog/assets/js/4.53c7bd9c.js" defer></script><script src="/my-blog/assets/js/1.1830d674.js" defer></script><script src="/my-blog/assets/js/17.3ddc4fe2.js" defer></script>
+</code></pre>
+                      <div class="line-numbers-wrapper">
+                        <span class="line-number">1</span><br /><span
+                          class="line-number"
+                          >2</span
+                        ><br /><span class="line-number">3</span><br /><span
+                          class="line-number"
+                          >4</span
+                        ><br />
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <footer class="page-edit">
+                  <!---->
+                  <div class="last-updated">
+                    <span class="prefix">Last Updated: </span>
+                    <span class="time">6/30/2022, 2:51:08 PM</span>
+                  </div>
+                </footer>
+                <!---->
+                <div class="comments-wrapper"><!----></div>
+                <ul
+                  class="side-bar sub-sidebar-wrapper"
+                  style="width: 12rem"
+                  data-v-1ab38110
+                >
+                  <li class="level-2" data-v-1ab38110>
+                    <a
+                      href="/my-blog/blogs/buglog/2022/20220606.html#_1-vue-无法检测实例被创建时不存在于-data-中的-property"
+                      class="sidebar-link reco-side-_1-vue-无法检测实例被创建时不存在于-data-中的-property"
+                      data-v-1ab38110
+                      >1. Vue 无法检测实例被创建时不存在于 data 中的 property</a
+                    >
+                  </li>
+                  <li class="level-2" data-v-1ab38110>
+                    <a
+                      href="/my-blog/blogs/buglog/2022/20220606.html#_2-vue-无法检测对象-property-的添加或移除"
+                      class="sidebar-link reco-side-_2-vue-无法检测对象-property-的添加或移除"
+                      data-v-1ab38110
+                      >2. Vue 无法检测对象 property 的添加或移除</a
+                    >
+                  </li>
+                  <li class="level-2" data-v-1ab38110>
+                    <a
+                      href="/my-blog/blogs/buglog/2022/20220606.html#_3-vue-不能检测利用数组索引直接修改一个数组项"
+                      class="sidebar-link reco-side-_3-vue-不能检测利用数组索引直接修改一个数组项"
+                      data-v-1ab38110
+                      >3. Vue 不能检测利用数组索引直接修改一个数组项</a
+                    >
+                  </li>
+                  <li class="level-2" data-v-1ab38110>
+                    <a
+                      href="/my-blog/blogs/buglog/2022/20220606.html#拓展-object-defineproperty-可以监测数组的变化"
+                      class="sidebar-link reco-side-拓展-object-defineproperty-可以监测数组的变化"
+                      data-v-1ab38110
+                      >拓展：Object.defineProperty() 可以监测数组的变化</a
+                    >
+                  </li>
+                  <li class="level-2" data-v-1ab38110>
+                    <a
+                      href="/my-blog/blogs/buglog/2022/20220606.html#_4-vue-不能监测直接修改数组长度的变化"
+                      class="sidebar-link reco-side-_4-vue-不能监测直接修改数组长度的变化"
+                      data-v-1ab38110
+                      >4. Vue 不能监测直接修改数组长度的变化</a
+                    >
+                  </li>
+                  <li class="level-2" data-v-1ab38110>
+                    <a
+                      href="/my-blog/blogs/buglog/2022/20220606.html#_5-在异步更新执行之前操作-dom-数据不会变化"
+                      class="sidebar-link reco-side-_5-在异步更新执行之前操作-dom-数据不会变化"
+                      data-v-1ab38110
+                      >5. 在异步更新执行之前操作 DOM 数据不会变化</a
+                    >
+                  </li>
+                  <li class="level-2" data-v-1ab38110>
+                    <a
+                      href="/my-blog/blogs/buglog/2022/20220606.html#拓展-异步更新带来的数据响应的误解"
+                      class="sidebar-link reco-side-拓展-异步更新带来的数据响应的误解"
+                      data-v-1ab38110
+                      >拓展：异步更新带来的数据响应的误解</a
+                    >
+                  </li>
+                  <li class="level-2" data-v-1ab38110>
+                    <a
+                      href="/my-blog/blogs/buglog/2022/20220606.html#_6-循环嵌套层级太深-视图不更新"
+                      class="sidebar-link reco-side-_6-循环嵌套层级太深-视图不更新"
+                      data-v-1ab38110
+                      >6. 循环嵌套层级太深，视图不更新？</a
+                    >
+                  </li>
+                  <li class="level-2" data-v-1ab38110>
+                    <a
+                      href="/my-blog/blogs/buglog/2022/20220606.html#_7-拓展-路由参数变化时-页面不更新-数据不更新"
+                      class="sidebar-link reco-side-_7-拓展-路由参数变化时-页面不更新-数据不更新"
+                      data-v-1ab38110
+                      >7. 拓展：路由参数变化时，页面不更新（数据不更新）</a
+                    >
+                  </li>
+                </ul>
+              </main>
+              <!---->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="global-ui">
+        <div
+          class="back-to-ceiling"
+          style="
+            right: 1rem;
+            bottom: 6rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.25rem;
+            line-height: 2.5rem;
+            display: none;
+          "
+          data-v-c6073ba8
+          data-v-c6073ba8
+        >
+          <svg
+            t="1574745035067"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="5404"
+            class="icon"
+            data-v-c6073ba8
+          >
+            <path
+              d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z"
+              p-id="5405"
+              data-v-c6073ba8
+            ></path>
+            <path
+              d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z"
+              p-id="5406"
+              data-v-c6073ba8
+            ></path>
+          </svg>
+        </div>
+        <div class="kanbanniang" data-v-ee8d62e6>
+          <div class="banniang-container" style="display: " data-v-ee8d62e6>
+            <div
+              class="messageBox"
+              style="right: 68px; bottom: 290px; display: none"
+              data-v-ee8d62e6
+            >
+              欢迎来到我的博客
+            </div>
+            <div
+              class="operation"
+              style="right: 90px; bottom: 40px; display: "
+              data-v-ee8d62e6
+            >
+              <i class="kbnfont kbn-ban-home ban-home" data-v-ee8d62e6></i>
+              <i class="kbnfont kbn-ban-message message" data-v-ee8d62e6></i>
+              <i class="kbnfont kbn-ban-close close" data-v-ee8d62e6></i>
+              <a
+                target="_blank"
+                href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html"
+                data-v-ee8d62e6
+                ><i class="kbnfont kbn-ban-info info" data-v-ee8d62e6></i
+              ></a>
+              <i
+                class="kbnfont kbn-ban-theme skin"
+                style="display: "
+                data-v-ee8d62e6
+              ></i>
+            </div>
+            <canvas
+              id="banniang"
+              width="250"
+              height="320"
+              class="live2d"
+              style="right: 90px; bottom: -20px; opacity: 0.9"
+              data-v-ee8d62e6
+            ></canvas>
+          </div>
+          <div class="showBanNiang" style="display: none" data-v-ee8d62e6>
+            看板娘
+          </div>
+        </div>
+        <APlayer
+          audio=""
+          fixed="true"
+          mini="true"
+          autoplay="autoplay"
+          theme="#f9bcdd"
+          loop="loop"
+          order="random"
+          preload="auto"
+          volume="0.1"
+          mutex="true"
+          lrc-type="0"
+          list-folded="true"
+          list-max-height="250"
+          storage-name="vuepress-plugin-meting"
+          id="aplayer-fixed"
+        ></APlayer
+        ><canvas id="vuepress-canvas-cursor"></canvas>
+        <div></div>
+      </div>
+    </div>
+    <script src="/my-blog/assets/js/app.a7213543.js" defer></script>
+    <script src="/my-blog/assets/js/4.53c7bd9c.js" defer></script>
+    <script src="/my-blog/assets/js/1.1830d674.js" defer></script>
+    <script src="/my-blog/assets/js/17.3ddc4fe2.js" defer></script>
   </body>
 </html>
